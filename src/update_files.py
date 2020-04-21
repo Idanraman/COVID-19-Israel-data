@@ -5,7 +5,7 @@ import imh_website_scraper
 import query_script.download_telegram_messages as download_telegram
 
 SCRIPT_DIR = os.path.dirname(__file__)
-OUTPUT_DIR = os.path.join(SCRIPT_DIR,"data")
+OUTPUT_DIR = os.path.join(SCRIPT_DIR,'..',"data")
 CITIES_DIR = os.path.join(SCRIPT_DIR,"telegram_files","raw_cities_files")
 
 def main():

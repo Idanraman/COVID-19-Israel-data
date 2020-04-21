@@ -12,11 +12,10 @@ sys.path.insert(1,"./personal_data/")
 
 from cities_parser import cities_filename_verifier
 
-OUTPUT_DIR_CITIES = r"../telegram_files/raw_cities_files"
+OUTPUT_DIR_CITIES = os.path.join('..','telegram_files','raw_cities_files')
 
 script_dir = os.path.dirname(__file__)
-rel_path = "personal_data/personal_data.txt"
-abs_file_path = os.path.join(script_dir, rel_path)
+abs_file_path = os.path.join(script_dir, 'personal_data','personal_data.txt')
 
 with open(abs_file_path, mode="r") as file:
     personal_data = file.readlines()
