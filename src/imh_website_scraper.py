@@ -19,6 +19,7 @@ def format_int(value):
         return int(value.strip().replace(',', ''))
 
 def main(output_dir):
+    print("checking for imh update")
     output_dir = os.path.join(output_dir,DAILY_UPDATE_OUTPUT_DIR)
     response = requests.get(SOURCE_URL)
     soup = BeautifulSoup(response.content, 'html.parser')
@@ -42,9 +43,12 @@ def main(output_dir):
 
     csv_values = [mild,moderate,deaths,critical,recovered,confirmed]
     csv_table = pd.DataFrame(columns=CSV_HEADERS, data=[csv_values])
-    file_path = os.path.join(output_dir,update_time) + CSV_SUFFIX
+    print(csv_values)
 
+    file_path = os.path.join(output_dir,update_time) + CSV_SUFFIX
+    print(file_path)
     if not os.path.exists(file_path):
+        print("true!!!")
         os.makedirs(output_dir, exist_ok=True)
         csv_table.to_csv(file_path, index=False, encoding="utf-8")
 

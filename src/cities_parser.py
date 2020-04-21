@@ -8,13 +8,13 @@ from parser_translator import ParserTranslator
 CSV_SUFFIX = ".csv"
 PDF_SUFFIX = "pdf"
 CITIES_UPDATE_OUTPUT_DIR = "cities"
-CITIES_FILE_IDENTIFIER = "ישובים"
-EXCLUDE_STRING = 'ערבים'
-ADDITIONAL_FILES = ['2020-04-05_ללא כותרת', '2020-04-20_דוח חדש כלל הארץ - 20.04.20']
+CITIES_FILE_IDENTIFIER = "??????"
+EXCLUDE_STRING = '?????'
+ADDITIONAL_FILES = ['2020-04-05_??? ?????', '2020-04-20_??? ??? ??? ???? - 20.04.20']
 OLD_SCRIPT_FILES = ['2020-04-03','2020-04-05','2020-04-06','2020-04-07',
                    '2020-04-09','2020-04-11',]
 
-def format_int(value: str) -> int:
+def format_int(value):
     try:
         return(int(float(value)))
     except:
