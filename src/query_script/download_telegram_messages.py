@@ -5,10 +5,11 @@ from telethon import TelegramClient
 from telethon.tl.functions.messages import GetHistoryRequest
 import time
 import logging
-
 import sys
 
 sys.path.append("../")
+sys.path.insert(1,"./personal_data/")
+
 from cities_parser import cities_filename_verifier
 
 OUTPUT_DIR_CITIES = r"../telegram_files/raw_cities_files"
