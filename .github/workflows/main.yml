@@ -2,7 +2,7 @@ name: Updates
 
 on:
   schedule:
-  - cron: '*/60 * * * *'
+  - cron: '*/13 * * * *'
 
 jobs: 
   download_updates:
