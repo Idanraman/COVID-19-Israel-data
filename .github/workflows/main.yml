@@ -28,6 +28,7 @@ jobs:
         pip install tabula-py
         pip install pandas
         pip install translate
+        pip install beautifulsoup4
         python update_files.py
       working-directory: ./src/
     - uses: actions/checkout@v2
