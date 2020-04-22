@@ -7,7 +7,7 @@ on:
 jobs: 
   download_updates:
     name: Downloads the daily new updates of the israeli health ministry 
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
     - name: Access user
       env: 
@@ -16,7 +16,6 @@ jobs:
       run: |
         git config --global user.email $USER_EMAIL
         git config --global user.name $USER_NAME
-      shell: bash
     - name: Clone git
       uses: actions/checkout@v2
       with:
