@@ -31,7 +31,6 @@ jobs:
         pip install beautifulsoup4
         python update_files.py
       working-directory: ./src/
-    - uses: actions/checkout@v2
     - name: Push new files
       run: |
         git config --global user.name 'Idanraman'
@@ -40,5 +39,3 @@ jobs:
         git add .
         git commit -am "Automated files collection"
         git push
-      shell: bash
-      working-directory: .
