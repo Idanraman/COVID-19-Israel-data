@@ -2,7 +2,7 @@ name: Updates
 
 on:
   schedule:
-  - cron: '*/29 * * * *'
+  - cron: '*/38 * * * *'
 
 jobs: 
   download_updates:
@@ -39,3 +39,4 @@ jobs:
         git add .
         git commit -am "Automated files collection"
         git push
+      working-directory: /
