@@ -36,9 +36,9 @@ jobs:
       run: |
         git config --global user.name 'Idanraman'
         git config --global user.email 'idanraman@users.noreply.github.com'
-        cwd
         git status
         git add .
         git commit -am "Automated files collection"
         git push
+      shell: bash
       working-directory: .
