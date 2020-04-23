@@ -33,6 +33,7 @@ jobs:
       working-directory: ./src/
     - name: Push new files
       run: |
+        dir
         git config --global user.name 'Idanraman'
         git config --global user.email 'idanraman@users.noreply.github.com'
         git status
