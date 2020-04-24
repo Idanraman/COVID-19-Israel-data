@@ -12,20 +12,21 @@ def main():
     try:
         download_telegram.main_runner()
     except Exception as e:
-        logging.error('Error at %s', 'telegram scraping', exc_info=e)
+        print('Error at %s', 'telegram scraping', exc_info=e)
 
     try:
+        print(os.listdir(CITIES_DIR))
         for f in os.listdir(CITIES_DIR):
             path = os.path.join(CITIES_DIR, f)
             cities_parser = cp.CitiesFileParser(path, OUTPUT_DIR)
             cities_parser.run()
     except Exception as e:
-        logging.error('Error at %s', 'cities parsing', exc_info=e)
+        print('Error at %s', 'cities parsing', exc_info=e)
 
     try:
         imh_website_scraper.main(OUTPUT_DIR)
     except Exception as e:
-        logging.error('Error at %s', 'ihm website scraping', exc_info=e)
+        print('Error at %s', 'ihm website scraping', exc_info=e)
 
 
 

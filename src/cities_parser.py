@@ -8,37 +8,43 @@ from parser_translator import ParserTranslator
 CSV_SUFFIX = ".csv"
 PDF_SUFFIX = "pdf"
 CITIES_UPDATE_OUTPUT_DIR = "cities"
-CITIES_FILE_IDENTIFIER = "??????"
-EXCLUDE_STRING = '?????'
-ADDITIONAL_FILES = ['2020-04-05_??? ?????', '2020-04-20_??? ??? ??? ???? - 20.04.20']
-OLD_SCRIPT_FILES = ['2020-04-03','2020-04-05','2020-04-06','2020-04-07',
-                   '2020-04-09','2020-04-11',]
+CITIES_FILE_IDENTIFIERS = ["ישובים", "חולים לפי יישוב", 'דוח חדש כלל הארץ']
+EXCLUDE_STRING = 'ערבים'
+EXCLUDE_STRING_2 = 'דרוזים'
+ADDITIONAL_FILES = ['2020-04-05_ללא כותרת', '2020-04-20_דוח חדש כלל הארץ - 20.04.20']
+OLD_SCRIPT_FILES = ['2020-04-03', '2020-04-05', '2020-04-06', '2020-04-07',
+                    '2020-04-09', '2020-04-11', ]
+
 
 def format_int(value):
     try:
-        return(int(float(value)))
+        return (int(float(value)))
     except:
-        if value in ['','nan', None]:
+        if value in ['', 'nan', None]:
             return None
         else:
             value = value.strip().replace(',', '').replace('+', '')
             return None if value == '' else int(float(value))
 
-def cities_filename_verifier(path):
 
+def cities_filename_verifier(path):
     file_name_list = os.path.basename(path).rsplit('.', 1)
     file_suffix = file_name_list[-1]
     file_name = "".join(file_name_list[:-1])
-    if (CITIES_FILE_IDENTIFIER in file_name or file_name in ADDITIONAL_FILES) \
-       and EXCLUDE_STRING not in file_name\
-       and file_suffix == PDF_SUFFIX:
-        return True
+    for idenitfier in CITIES_FILE_IDENTIFIERS:
+        if ((idenitfier in file_name or file_name in ADDITIONAL_FILES)
+                and EXCLUDE_STRING not in file_name
+                and EXCLUDE_STRING_2 not in file_name
+                and file_suffix == PDF_SUFFIX):
+            return True
     return False
+
 
 def get_date_from_filename(file_name):
     path_parts = re.split("[_.]", file_name)
     date = path_parts[0]
     return date
+
 
 class CitiesFileParser:
     def __init__(self, path, output_dir):
@@ -74,7 +80,7 @@ class CitiesFileParser:
             # Don't add initial unneeded table
             first_headers_len = len(pdf_tables[1].columns)
 
-        for idx,pdf_table in enumerate(pdf_tables):
+        for idx, pdf_table in enumerate(pdf_tables):
             if len(pdf_table.columns) != first_headers_len:
                 # Don't add this table.
                 continue
@@ -113,7 +119,7 @@ class CitiesFileParser:
             for line in list_data:
                 # Solves the problem that the data moved one column right in the middle of the file
                 if line[1] is not None:
-                    if type(line[1])==int:
+                    if type(line[1]) == int:
                         fixed_data.append(
                             [
                                 translator.translate_word(line[0]),
@@ -181,7 +187,8 @@ class CitiesFileParser:
         row_index = start_index
 
         for i in range(start_index, end_index, index_jumps):
-            merged_row = CitiesFileParser._are_rows_completed(merged_table, row_index,(-1 * index_jumps), values_end_col)
+            merged_row = CitiesFileParser._are_rows_completed(merged_table, row_index, (-1 * index_jumps),
+                                                              values_end_col)
             if merged_row:
                 merged_table[row_index - index_jumps] = merged_row
                 merged_table.remove(merged_table[row_index])
@@ -235,8 +242,8 @@ class CitiesFileParser:
         for i in range(1, len(concated_table)):
             try:
                 if (None in concated_table[row_index]
-                    or 'None' in concated_table[row_index]
-                    or (None in concated_table[0] and 1 == row_index)):
+                        or 'None' in concated_table[row_index]
+                        or (None in concated_table[0] and 1 == row_index)):
                     full_fields = zip(concated_table[row_index - 1], concated_table[row_index])
                     for col_index, full_field in enumerate(full_fields):
                         concated_table[row_index - 1][col_index] = (' '.join([str(full_field[0]),
@@ -252,7 +259,7 @@ class CitiesFileParser:
         file_name = os.path.basename(self.path)
         file_name = "".join(file_name.split(".")[:-1])
         file_name = get_date_from_filename(file_name)
-        return os.path.join(self.output_dir,file_name)+CSV_SUFFIX
+        return os.path.join(self.output_dir, file_name) + CSV_SUFFIX
 
     def export_to_csv(self):
         os.makedirs(self.output_dir, exist_ok=True)
