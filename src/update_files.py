@@ -9,20 +9,18 @@ OUTPUT_DIR = os.path.join(SCRIPT_DIR,'..',"data")
 CITIES_DIR = os.path.join(SCRIPT_DIR,"telegram_files","raw_cities_files")
 
 def main():
-    try:
-        download_telegram.main_runner()
-    except Exception as e:
-        print('Error at %s', 'telegram scraping', exc_info=e)
+    # try:
+    #     download_telegram.main_runner()
+    # except Exception as e:
+    #     print('Error at %s', 'telegram scraping', exc_info=e)
 
     try:
-        print(os.listdir(CITIES_DIR))
         for f in os.listdir(CITIES_DIR):
             path = os.path.join(CITIES_DIR, f)
             cities_parser = cp.CitiesFileParser(path, OUTPUT_DIR)
             cities_parser.run()
     except Exception as e:
         print('Error at %s', 'cities parsing')
-
     try:
         imh_website_scraper.main(OUTPUT_DIR)
     except Exception as e:
