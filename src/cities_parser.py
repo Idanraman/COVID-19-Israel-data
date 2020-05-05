@@ -8,7 +8,7 @@ from parser_translator import ParserTranslator
 CSV_SUFFIX = ".csv"
 PDF_SUFFIX = "pdf"
 CITIES_UPDATE_OUTPUT_DIR = "cities"
-CITIES_FILE_IDENTIFIERS = ["ישובים", "חולים לפי יישוב", 'דוח חדש כלל הארץ']
+CITIES_FILE_IDENTIFIERS = ["כלל_הארץ","ישובים", "חולים לפי יישוב", 'דוח חדש כלל הארץ']
 EXCLUDE_STRING = 'ערבים'
 EXCLUDE_STRING_2 = 'דרוזים'
 ADDITIONAL_FILES = ['2020-04-05_ללא כותרת', '2020-04-20_דוח חדש כלל הארץ - 20.04.20']
