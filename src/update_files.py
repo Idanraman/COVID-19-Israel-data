@@ -21,10 +21,7 @@ def main():
     #       cities_parser.run()
     #except Exception as e:
     #   print('Error at %s', 'cities parsing')
-    try:
-        imh_website_scraper.main(OUTPUT_DIR)
-    except Exception as e:
-        print('Error at %s', 'ihm website scraping')
+    imh_website_scraper.main(OUTPUT_DIR)
 
 
 
