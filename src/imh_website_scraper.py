@@ -39,7 +39,6 @@ def main(output_dir):
     critical = format_int(levels_container.findAll("div", {"class": "corona-bold"})[2].text)
 
     update_time_div = soup.find(text=re.compile('נכונה לתאריך:'))
-    print(update_time_div)
     update_time = datetime.strptime(update_time_div, INPUT_DATE_FORMAT)\
         .strftime(OUTPUT_DATE_FORMAT)
 
